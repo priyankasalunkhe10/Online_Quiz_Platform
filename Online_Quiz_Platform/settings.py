@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'quiz'
+    'quiz',
+    'api'
 ]
+
+AUTH_USER_MODEL = "quiz.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,13 +126,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-}
-
-from datetime import timedelta
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+  "DEFAULT_AUTHENTICATION_CLASSES": (
+    "rest_framework_simplejwt.authentication.JWTAuthentication",
+  ),
+  "DEFAULT_PERMISSION_CLASSES": (
+    "rest_framework.permissions.IsAuthenticated",
+  )
 }
